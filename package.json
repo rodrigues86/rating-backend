@@ -11,10 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tagmedev/tagme-models": "^7.25.4",
+    "chalk": "^4.1.1",
     "express": "^4.17.1",
+    "lodash": "^4.17.21",
     "mongoose": "^5.12.11",
     "nodemailer": "^6.6.1",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "os": "^0.1.1"
   }
 }
