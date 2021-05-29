@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require('body-parser')
+const cors = require('cors');
 const app = express();
 const rateService = require('./services/rating.service')
 const emailService = require('./services/email.service')
@@ -8,6 +9,14 @@ const _ = require('lodash')
 const jsonParser = bodyParser.json()
 require('./services/db.service')
 
+const corsOptions = {
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    allowedHeaders: ['Content-Type']
+  };
+
+  // enable cors
+  app.use(cors(corsOptions));
+
 app.get("/test", (req, res) => {
     res.json(["Rodrigues", "Flávio", "Dennis"]);
 });
@@ -15,7 +24,6 @@ app.get("/test", (req, res) => {
 app.post("/send", jsonParser, async (req, res) => {
     try {
         const rating = req.body;
-        console.log('rating >> ', rating);
         const saved = await rateService.save(rating)
         emailService.send()
         res.json({ success: true, message: saved });
